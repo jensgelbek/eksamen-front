@@ -1,14 +1,22 @@
-const USER_BASE =
-  "https://osvaldo.dk/tomcat/eksamen/api";
-const INFO_BASE =
-  "https://osvaldo.dk.com/tomcat/eksamen/api/info";
 
+// const BASE ="https://osvaldo.dk/tomcat/eksamen/api";
+
+const BASE="http://localhost:8080/jpareststarter/api";
+const USER_BASE =BASE;
+const INFO_BASE =`${BASE}/info`;
+const DOG_BASE=`${BASE}/dog`;
+
+  
 const USER = {
   LOGIN: `${USER_BASE}/login`,
   SIGNUP: `${USER_BASE}/user`,
   HENT: `${USER_BASE}/user`,
 }
 
+const DOG = {
+  ADD: `${DOG_BASE}/add`,
+ 
+}
 const INFO = {
   USER: `${INFO_BASE}/user`,
   ADMIN: `${INFO_BASE}/admin`,
@@ -16,4 +24,4 @@ const INFO = {
   FETCH_ONE: `${INFO_BASE}/fetchData`,
 }
 
-export {USER, INFO}
+export {USER, INFO,DOG}
