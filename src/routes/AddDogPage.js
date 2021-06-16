@@ -2,8 +2,9 @@ import { Button, Form } from "react-bootstrap";
 import React from "react";
 import CenteredContainer from "../components/CenteredContainer";
 import { useHistory } from "react-router";
-import { fetchData } from "../apiUtils";
+import { fetchData,handleError } from "../apiUtils";
 import { DOG } from "../settings";
+import { ThemeConsumer } from "react-bootstrap/esm/ThemeProvider";
 
 const initialValues = {
   "id": "1",
@@ -12,7 +13,7 @@ const initialValues = {
   "image": "",
   "gender":"",
   "birthDate":"",
-  "OwnerId":"1",
+  "OwnerId":"",
   "OwnerName":"",
 };
 
@@ -37,7 +38,7 @@ function AddDog() {
 
   return (
     <CenteredContainer>
-    <h1>Book to add:</h1>
+    <h1>Dog to add:</h1>
     <Form style={{ width: "400px" }} onSubmit={handleSubmit}>
       {serverError ? (
         <h3 className="text-danger">{serverError.message}</h3>
@@ -49,7 +50,7 @@ function AddDog() {
           name="name"
           value={dogData.name}
           onChange={handleChange}
-          placeholder="Enter dogh name"
+          placeholder="Enter dog name"
         />
       </Form.Group>
       <Form.Group controlId="Breed">
@@ -113,6 +114,7 @@ function AddDog() {
         Add Dog.
       </Button>
     </Form>
+  
   </CenteredContainer>
 );
 }

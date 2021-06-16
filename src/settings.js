@@ -15,7 +15,8 @@ const USER = {
 
 const DOG = {
   ADD: `${DOG_BASE}/add`,
- 
+  ALL: `${DOG_BASE}/all`,
+  DEL: `${DOG_BASE}`,
 }
 const INFO = {
   USER: `${INFO_BASE}/user`,

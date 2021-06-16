@@ -26,7 +26,6 @@ function handleHttpErrors(res) {
   }
   return res.json()
 }
-
 // Give a useState setter function as the second paramater.
 function handleError(error, setError) {
   if (error.status) {
