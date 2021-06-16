@@ -5,8 +5,8 @@ import AdminPage from "./routes/AdminPage"
 import HomePage from "./routes/HomePage"
 import UserPage from "./routes/UserPage"
 import AddDog from "./routes/AddDogPage"
+import ShowDog from "./routes/ShowDogPage"
 import EditDog from "./routes/EditDogPage"
-
 function AuthenticatedApp(props) {
   const {logout, user} = props
   return (
@@ -21,7 +21,10 @@ function AuthenticatedApp(props) {
           <AddDog />
         </Route>
         <Route path="/editdog">
-          <EditDog />
+          <EditDog id={props.id}/>
+        </Route>
+        <Route path="/showdog">
+          <ShowDog />
         </Route>
         <Route path="/admin">
           <AdminPage />

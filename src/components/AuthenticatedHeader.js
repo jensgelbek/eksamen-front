@@ -11,8 +11,8 @@ function AuthenticatedHeader(props) {
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
       <Nav >
-          <LinkContainer exact to="/editdog">
-            <Nav.Link>Edit/Delete Dog</Nav.Link>
+          <LinkContainer exact to="/showdog">
+            <Nav.Link>Show Dogs</Nav.Link>
           </LinkContainer>
         </Nav>
         <Nav className="mr-auto">
