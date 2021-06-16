@@ -29,7 +29,7 @@ function ShowDog() {
 
     React.useEffect(() => {
         fetchData(DOG.ALL, "GET").then((data)=>setDogData(data));
-  },[edit]);
+  },[edit,dogData,refresh]);
 
   function HandleDelete(id){
     fetchData(DOG.DEL+"/"+id,"DELETE").then(setrefresh(refresh+1))
@@ -39,7 +39,7 @@ function ShowDog() {
   return (
      <Container>
        
-       {edit &&( <EditDog  edit={edit}/>)}
+       {edit &&( <EditDog setEdit={setEdit} edit={edit} setrefresh={setrefresh} refresh={refresh}/>)}
           <Table>
               <tr>
                   <th>Dog ID </th>

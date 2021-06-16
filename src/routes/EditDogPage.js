@@ -22,14 +22,16 @@ function EditDog(props) {
   const [dogData, setDogData] = React.useState(initialValues);
   const [serverError, setServerError] = React.useState(null);
   const history = useHistory();
-  const {edit}=props;
+  const {edit,setrefresh,refresh,setEdit}=props;
 
   function handleSubmit(event) {
     event.preventDefault();    
     fetchData(DOG.EDIT, "PUT", dogData).then();
     setDogData(initialValues);
+    setrefresh(refresh+1);
+    setEdit(null);
   }
-  
+
 React.useEffect(() => {
     fetchData(DOG.GET+"/"+edit,"GET")
       .then(data => setDogData(data))

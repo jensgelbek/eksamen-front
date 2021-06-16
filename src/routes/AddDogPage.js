@@ -34,8 +34,8 @@ function AddDog() {
       [event.target.name]: event.target.value,
     });
   }
-
-
+  
+ 
   return (
     <CenteredContainer>
     <h1>Dog to add:</h1>
