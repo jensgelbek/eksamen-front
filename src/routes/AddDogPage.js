@@ -3,7 +3,7 @@ import React from "react";
 import CenteredContainer from "../components/CenteredContainer";
 import { useHistory } from "react-router";
 import { fetchData,handleError } from "../apiUtils";
-import { DOG } from "../settings";
+import { DOG,OWNER } from "../settings";
 import { ThemeConsumer } from "react-bootstrap/esm/ThemeProvider";
 
 const initialValues = {
@@ -19,12 +19,15 @@ const initialValues = {
 
 function AddDog() {
   const [dogData, setDogData] = React.useState(initialValues);
+  const [ownerList,setOwnerList]=React.useState();
   const [serverError, setServerError] = React.useState(null);
   const history = useHistory();
 
   function handleSubmit(event) {
     event.preventDefault();    
-    fetchData(DOG.ADD, "POST", dogData).then();
+    fetchData(DOG.ADD, "POST", dogData)
+    .then(data => setDogData(data))
+   .catch(error => handleError(error, setServerError));//   error handling .....
     setDogData(initialValues);
   }
 
@@ -33,9 +36,15 @@ function AddDog() {
       ...dogData,
       [event.target.name]: event.target.value,
     });
+    setServerError(null);// error handling
   }
   
- 
+  React.useEffect(() => {
+    fetchData(OWNER.ALL,"GET")
+      .then(data => setOwnerList(data))
+      .catch(error => handleError(error, setServerError))//.then(setDogData({birthDate:"2021-06-10"}))
+  }, [])
+
   return (
     <CenteredContainer>
     <h1>Dog to add:</h1>
@@ -98,17 +107,17 @@ function AddDog() {
           />
         
         </Form.Group>
-        <Form.Group controlId="Owner Id">
-        <Form.Label>Owner Id</Form.Label>
-        <Form.Control
-          type="number"
-          name="OwnerId"
-          value={dogData.OwnerId}
-          onChange={handleChange}
-          placeholder="Enter owner ID"
-        />
-      </Form.Group>
-
+<Form.Group controlId="Owner Id">
+      <select class="custom-select" name="OwnerId" value={dogData.OwnerId}
+          onChange={handleChange}>
+    {ownerList && ownerList.map((owner) => {
+            return (
+    <option value={owner.id}>{owner.name}</option>
+  
+            )
+    })}
+  </select>
+    </Form.Group> 
      
       <Button block type="submit">
         Add Dog.

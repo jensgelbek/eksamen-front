@@ -35,7 +35,7 @@ function EditDog(props) {
 React.useEffect(() => {
     fetchData(DOG.GET+"/"+edit,"GET")
       .then(data => setDogData(data))
-      .catch(error => handleError(error, setServerError)).then(setDogData({birthDate:"2021-06-10"}))
+      .catch(error => handleError(error, setServerError))//.then(setDogData({birthDate:"2021-06-10"}))
   }, [edit])
 
   function handleChange(event) {
